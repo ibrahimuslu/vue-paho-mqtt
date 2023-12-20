@@ -1,6 +1,7 @@
 import { getClient } from '~/config/client';
 import { getMqttOptions } from '~/config/options';
 import { msgHandlers, queueMsgHandlers } from './msgHandlers';
+import { TypedArray } from 'paho-mqtt';
 
 /**
  * @description used to subscribe to the topic specified
@@ -12,7 +13,7 @@ import { msgHandlers, queueMsgHandlers } from './msgHandlers';
  */
 export const subscribe = (
   topic: string,
-  onMessage: (data: string, ...args: unknown[]) => unknown,
+  onMessage: (dataString: string, dataBytes: ArrayBuffer | TypedArray, ...args: unknown[]) => unknown,
   useMainTopic = true,
 ): void => {
   const MqttOptions = getMqttOptions();

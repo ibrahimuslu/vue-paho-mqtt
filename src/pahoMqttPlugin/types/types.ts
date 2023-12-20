@@ -1,4 +1,4 @@
-import type { Qos } from 'paho-mqtt';
+import type { Qos, TypedArray } from 'paho-mqtt';
 export * from './../index';
 
 export interface PahoMqttPluginOptions {
@@ -23,7 +23,7 @@ export type MqttStatus =
 
 export type MqttState = Record<MqttMode, { qos: Qos; ret: boolean }>;
 
-export type MsgHandler = Record<string, ((payload: string) => unknown)[]>;
+export type MsgHandler = Record<string, ((payloadString: string ,payloadBytes: ArrayBuffer | TypedArray) => unknown)[]>;
 
 export interface MqttOptions {
   host: string;

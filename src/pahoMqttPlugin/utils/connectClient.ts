@@ -7,6 +7,7 @@ import { onMessageArrivedCallback } from '~/functions/onMessageArrived';
 import { SweetAlert } from './SweetAlert';
 import { disconnectClient } from './disconnectClient';
 import { connectWatchdog, mqttStatus } from './refs';
+import { TypedArray } from 'paho-mqtt';
 
 /**
  * Connect to the mqtt broker
@@ -62,6 +63,7 @@ export const connectClient = ({
 
   client.onMessageArrived = (message: {
     payloadString: string;
+    payloadBytes: ArrayBuffer | TypedArray;
     destinationName: string;
   }) => {
     onMessageArrivedCallback(message);
